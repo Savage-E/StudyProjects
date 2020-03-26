@@ -1,0 +1,10 @@
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\bin\Debug\AVL_TREE.dll
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\bin\Debug\AVL_TREE.pdb
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\obj\Debug\ConsoleApp1.csprojAssemblyReference.cache
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\Vlad\source\repos\BalancedBinaryTree\ConsoleApp1\obj\Debug\ConsoleApp1.pdb

@@ -1,7 +1,0 @@
-C:\Users\Vlad\source\repos\BalancedBinaryTree\BalancedBinaryTree\bin\Debug\BalancedBinaryTree.exe.config
-C:\Users\Vlad\source\repos\BalancedBinaryTree\BalancedBinaryTree\bin\Debug\BalancedBinaryTree.exe
-C:\Users\Vlad\source\repos\BalancedBinaryTree\BalancedBinaryTree\bin\Debug\BalancedBinaryTree.pdb
-C:\Users\Vlad\source\repos\BalancedBinaryTree\BalancedBinaryTree\obj\Debug\BalancedBinaryTree.csprojAssemblyReference.cache
-C:\Users\Vlad\source\repos\BalancedBinaryTree\BalancedBinaryTree\obj\Debug\BalancedBinaryTree.csproj.CoreCompileInputs.cache
-C:\Users\Vlad\source\repos\BalancedBinaryTree\BalancedBinaryTree\obj\Debug\BalancedBinaryTree.exe
-C:\Users\Vlad\source\repos\BalancedBinaryTree\BalancedBinaryTree\obj\Debug\BalancedBinaryTree.pdb

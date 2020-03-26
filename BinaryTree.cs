@@ -2,14 +2,39 @@
 {
     public class BinaryTree<T> where T : System.IComparable<T>
     {
+
+
+          private  class Node<T>
+        {
+            public Node(T data)
+            {
+                this.data = data;
+
+            }
+
+            public Node<T> left { get; set; }
+            public Node<T> right { get; set; }
+            public int  height { get; set; }
+
+            public T data { get; set; }
+        }
+
+
+
+
+
         private Node<T> root;
 
-        public int GetHeight(Node<T> node)
+        private int GetHeight(Node<T> node)
         {
             if (node == null)
                 return 0;
             return node.height;
         }
+
+
+
+
 
         private int Bfactor(Node<T> node)//Вычисляет разницу высоты левого и правого поддеревьев(фактор баланса).
         {

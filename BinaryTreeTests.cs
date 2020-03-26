@@ -8,35 +8,7 @@ namespace AVL_TREE.Tests
     {
         private BinaryTree<int> tree;
 
-        [TestMethod]
-        public void GetHeight_NullNode_0Returned()
-        {
-            //Arrange
-            tree = new BinaryTree<int>(2);
-            int expected = 0;
-
-            //Act
-            int actual = tree.GetHeight(null);
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void GetHeight_5IsHeightOfTheNode_5Returned()
-        {
-            //Arrange
-            tree = new BinaryTree<int>(2);
-            Node<int> n = new Node<int>(4);
-            n.height = 5;
-            int expected = 5;
-
-            //Act
-            int actual = tree.GetHeight(n);
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
+     
         #region Search Tests
 
         [TestMethod]
@@ -122,20 +94,20 @@ namespace AVL_TREE.Tests
             tree.Erase(2);
             tree.Insert(1);
 
-            Assert.IsTrue(tr)
+            Assert.IsTrue(tree.Search(1));
         }
 
         public void Insert_ADD5_NothingReturned()
         {
-            //Arrange
+            
             tree = new BinaryTree<int>(41);
 
             bool expected = true;
 
-            //Act
+            
             tree.Insert(5);
             bool actual = tree.Search(5);
-            //Assert
+            
             Assert.AreEqual(expected, actual);
         }
     }

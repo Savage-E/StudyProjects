@@ -1,0 +1,9 @@
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\bin\Debug\netstandard2.0\AVL_TREE.deps.json
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\bin\Debug\netstandard2.0\AVL_TREE.dll
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\bin\Debug\netstandard2.0\AVL_TREE.pdb
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\obj\Debug\netstandard2.0\AVL_TREE.csprojAssemblyReference.cache
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\obj\Debug\netstandard2.0\AVL_TREE.csproj.CoreCompileInputs.cache
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\obj\Debug\netstandard2.0\AVL_TREE.AssemblyInfoInputs.cache
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\obj\Debug\netstandard2.0\AVL_TREE.AssemblyInfo.cs
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\obj\Debug\netstandard2.0\AVL_TREE.dll
+C:\Users\Vlad\Desktop\Games\BinaryTree\AVL_TREE\obj\Debug\netstandard2.0\AVL_TREE.pdb

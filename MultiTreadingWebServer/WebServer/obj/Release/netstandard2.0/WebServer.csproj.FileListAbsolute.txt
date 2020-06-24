@@ -1,0 +1,8 @@
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\bin\Release\netstandard2.0\WebServer.deps.json
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\bin\Release\netstandard2.0\WebServer.dll
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\bin\Release\netstandard2.0\WebServer.pdb
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Release\netstandard2.0\WebServer.csprojAssemblyReference.cache
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Release\netstandard2.0\WebServer.AssemblyInfoInputs.cache
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Release\netstandard2.0\WebServer.AssemblyInfo.cs
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Release\netstandard2.0\WebServer.dll
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Release\netstandard2.0\WebServer.pdb

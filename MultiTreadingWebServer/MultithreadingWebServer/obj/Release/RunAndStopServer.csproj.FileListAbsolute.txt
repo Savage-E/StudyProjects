@@ -1,0 +1,9 @@
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\bin\Release\MultithreadingWebServer.exe.config
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\bin\Release\MultithreadingWebServer.exe
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\bin\Release\MultithreadingWebServer.pdb
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\bin\Release\WebServer.dll
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\bin\Release\WebServer.pdb
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\obj\Release\RunAndStopServer.csprojAssemblyReference.cache
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\obj\Release\RunAndStopServer.csproj.CopyComplete
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\obj\Release\MultithreadingWebServer.exe
+C:\Users\Massi\source\repos\MultiTreadingWebServer\MultithreadingWebServer\obj\Release\MultithreadingWebServer.pdb

@@ -1,0 +1,17 @@
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\bin\Debug\netstandard2.0\WebServer.deps.json
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\bin\Debug\netstandard2.0\WebServer.dll
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\bin\Debug\netstandard2.0\WebServer.pdb
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.csproj.CoreCompileInputs.cache
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.AssemblyInfoInputs.cache
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.AssemblyInfo.cs
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.dll
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.pdb
+C:\Users\Vlad\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.csprojAssemblyReference.cache
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\bin\Debug\netstandard2.0\WebServer.deps.json
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\bin\Debug\netstandard2.0\WebServer.dll
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\bin\Debug\netstandard2.0\WebServer.pdb
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.AssemblyInfoInputs.cache
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.AssemblyInfo.cs
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.dll
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.pdb
+C:\Users\Massi\source\repos\MultiTreadingWebServer\WebServer\obj\Debug\netstandard2.0\WebServer.csprojAssemblyReference.cache

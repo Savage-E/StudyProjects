@@ -22,8 +22,8 @@ namespace Paired_peaks
         public Form1() 
         {
             InitializeComponent();
-            data1 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\4.dat");
-            data2 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\3.dat");
+            data1 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\10.dat");
+            data2 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\11.dat");
             max1 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data1));
             max2 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data2));
            
@@ -88,7 +88,14 @@ namespace Paired_peaks
             }
             ReadWriteFile.WriteTxtFile(data);
 
-            
+            /*var tempData = new List<int>();
+            for (int i = 0; i < 10000; i++)
+            {
+                var sin = Math.Sin(i+5);
+                var val = (int)  (sin* 1000);
+                tempData.Add(val);
+            }
+            ReadWriteFile.WriteTxtFile(tempData.ConvertAll(x=>x.ToString()));*/
             
         }
 

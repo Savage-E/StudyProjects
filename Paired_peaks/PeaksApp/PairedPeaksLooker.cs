@@ -25,7 +25,7 @@ namespace Paired_peaks.Utils
 
                     if (array2.Keys.ElementAt(i) >= firstLeftEdge && array2.Keys.ElementAt(i) <= firstRightEdge )
                     {
-                        result.Add(Math.Abs(array2.Values.ElementAt(0) - array1.Values.ElementAt(1)));
+                        result.Add(Math.Abs(array2.Values.ElementAt(0) - array1.Values.ElementAt(0)));
                     }
 
                     continue;
@@ -37,7 +37,7 @@ namespace Paired_peaks.Utils
                 int leftFile1 = array1.Keys.ElementAt(i) - FindValidInterval(array1.Keys.ElementAt(i),array1.Keys.ElementAt(i-1),percentage);
                 if (array2.Keys.ElementAt(i) >= leftFile1 && array2.Keys.ElementAt(i) <= rightFile1  )
                 {
-                    MessageBox.Show("index :" + array1.Keys.ElementAt(i) + " value:" + array1.Values.ElementAt(i)+ "\n" + "index :" + array2.Keys.ElementAt(i) + " value:" + array2.Values.ElementAt(i));
+                  //  MessageBox.Show("index :" + array1.Keys.ElementAt(i) + " value:" + array1.Values.ElementAt(i)+ "\n" + "index :" + array2.Keys.ElementAt(i) + " value:" + array2.Values.ElementAt(i));
                     result.Add(Math.Abs(array2.Values.ElementAt(i)-array1.Values.ElementAt(i)));
                 }
                 

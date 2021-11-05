@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -24,7 +25,7 @@ namespace Paired_peaks
         {
             InitializeComponent();
             
-            var f = 10; //частота синусоидального сигнала
+            /*var f = 11; //частота синусоидального сигнала
             var fd = 10000; //частота дискретизации
             var w = 3 * Math.PI * f / fd;
             var tempData = new List<int>();
@@ -35,11 +36,12 @@ namespace Paired_peaks
                 
                 tempData.Add((int) Math.Round(val));
             }
-
+            ReadWriteFile.WriteTxtFile(tempData.ConvertAll(x => x.ToString()));*/
             
-            ReadWriteFile.WriteTxtFile(tempData.ConvertAll(x => x.ToString()));
+            
+            
             data1 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\15.dat");
-            data2 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\16 .dat");
+            data2 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\16.dat");
             max1 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data1));
             max2 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data2));
 
@@ -65,7 +67,7 @@ namespace Paired_peaks
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            percentage = (int) numericUpDown1.Value;
+            percentage = (int) percantageNumUpDown.Value;
         }
 
         private void richTextBox3_TextChanged(object sender, EventArgs e)
@@ -79,6 +81,8 @@ namespace Paired_peaks
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+              
               max2 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data2));
               max1= PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data1));
               
@@ -87,11 +91,38 @@ namespace Paired_peaks
               {
                   richTextBox3.Text += v +"\n"  ;
               }
+         //     PairedPeaksLooker.FindPairs()
               //     ReadWriteFile.WriteTxtFile(data);
  
 
 
             
+        }
+
+        private void readMaskBtn_Click(object sender, EventArgs e)
+        {
+            if (openMaskFileDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            string filename = openMaskFileDialog.FileName;
+            string fileText = File.ReadAllText(filename);
+            maskTbx.Text = fileText;
+           
+        }
+
+        private void openSignalsFolderBtn_Click(object sender, EventArgs e)
+        {
+            using(var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+
+                   MessageBox.Show("Files found: " + files[0], "Message");
+                   
+                }
+            }
         }
     }
 }

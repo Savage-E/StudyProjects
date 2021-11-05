@@ -8,7 +8,6 @@ namespace Paired_peaks.Utils
 {
     public class PairedPeaksLooker
     {
-
         public  static List<Int32> FindPairs(SortedDictionary<int,int> array1, SortedDictionary<int,int> array2, int percentage)
         {
        
@@ -25,33 +24,37 @@ namespace Paired_peaks.Utils
 
                     if (array2.Keys.ElementAt(i) >= firstLeftEdge && array2.Keys.ElementAt(i) <= firstRightEdge )
                     {
-                        result.Add(Math.Abs(array2.Values.ElementAt(0) - array1.Values.ElementAt(0)));
+                        result.Add(Math.Abs(array2.Keys.ElementAt(0) - array1.Keys.ElementAt(0)));
                     }
 
                     continue;
                 }
+
                 
                 KeyValuePair<int,int>  value1 = array1.ElementAt(i+1);
 
                 int rightFile1 = array1.Keys.ElementAt(i)+ FindValidInterval(value1.Key,array1.Keys.ElementAt(i),percentage);
                 int leftFile1 = array1.Keys.ElementAt(i) - FindValidInterval(array1.Keys.ElementAt(i),array1.Keys.ElementAt(i-1),percentage);
-                if (array2.Keys.ElementAt(i) >= leftFile1 && array2.Keys.ElementAt(i) <= rightFile1  )
+               var tempArray =  array2.Keys.Where(x => leftFile1 < x && x < rightFile1);
+              
+                if (tempArray.Any())
                 {
-                  //  MessageBox.Show("index :" + array1.Keys.ElementAt(i) + " value:" + array1.Values.ElementAt(i)+ "\n" + "index :" + array2.Keys.ElementAt(i) + " value:" + array2.Values.ElementAt(i));
-                    result.Add(Math.Abs(array2.Values.ElementAt(i)-array1.Values.ElementAt(i)));
+                    var value = array2.Where(x => x.Key == tempArray.First());
+                   var res = Math.Abs(value.First().Key - array1.Keys.ElementAt(i));
+                    result.Add(res);
                 }
                 
             }
 
             return result;
         }
+
         private  static int  FindValidInterval( int index1, int index2,int percentage)
         {
             var val = Math.Abs((index2 - index1) * ((float) percentage / 100));
             return (int) val;
-        }    
-            
         }
+    }
                 
     }
     

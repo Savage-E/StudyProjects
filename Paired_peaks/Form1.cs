@@ -19,12 +19,16 @@ namespace Paired_peaks
         private string data2;
         private static SortedDictionary<int, int> max1;
         private static SortedDictionary<int, int> max2;
-        private int percentage = 40;
+        private int percentage = 0;
+        private string[] files;
+        private string[] masks;
+        private string resultFolderPath;
+        private string option = "";
 
         public Form1()
         {
             InitializeComponent();
-            
+
             /*var f = 11; //частота синусоидального сигнала
             var fd = 10000; //частота дискретизации
             var w = 3 * Math.PI * f / fd;
@@ -37,15 +41,14 @@ namespace Paired_peaks
                 tempData.Add((int) Math.Round(val));
             }
             ReadWriteFile.WriteTxtFile(tempData.ConvertAll(x => x.ToString()));*/
-            
-            
-            
-            data1 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\15.dat");
+
+
+            /*data1 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\15.dat");
             data2 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\16.dat");
             max1 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data1));
-            max2 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data2));
+            max2 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data2));*/
 
-            foreach (var peak in max1)
+            /*foreach (var peak in max1)
             {
                 richTextBox1.Text += "index :" + peak.Key + " value:" + peak.Value + "\n";
             }
@@ -53,51 +56,9 @@ namespace Paired_peaks
             foreach (var peak in max2)
             {
                 richTextBox2.Text += "index :" + peak.Key + " value:" + peak.Value + "\n";
-            }
+            }*/
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            // richTextBox1.Text = data1;
-        }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            percentage = (int) percantageNumUpDown.Value;
-        }
-
-        private void richTextBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-
-        private void richTextBox4_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-              
-              max2 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data2));
-              max1= PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data1));
-              
-              List<string> data = PairedPeaksLooker.FindPairs(max1, max2, percentage).ConvertAll(x => x.ToString());
-              foreach (var v in data)
-              {
-                  richTextBox3.Text += v +"\n"  ;
-              }
-         //     PairedPeaksLooker.FindPairs()
-              //     ReadWriteFile.WriteTxtFile(data);
- 
-
-
-            
-        }
 
         private void readMaskBtn_Click(object sender, EventArgs e)
         {
@@ -105,22 +66,91 @@ namespace Paired_peaks
                 return;
             string filename = openMaskFileDialog.FileName;
             string fileText = File.ReadAllText(filename);
+            masks = fileText.Split(new char[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
             maskTbx.Text = fileText;
-           
         }
 
         private void openSignalsFolderBtn_Click(object sender, EventArgs e)
         {
-            using(var fbd = new FolderBrowserDialog())
+            using (var fbd = new FolderBrowserDialog())
             {
                 DialogResult result = fbd.ShowDialog();
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+                    files = Directory.GetFiles(fbd.SelectedPath);
+                }
+            }
+        }
 
-                   MessageBox.Show("Files found: " + files[0], "Message");
-                   
+
+        private void findPeaksExecuteBtn_Click(object sender, EventArgs e)
+        {
+            List<string> pairs = new List<string>();
+            if (percentage == 0)
+            {
+                MessageBox.Show("Введите проценты!!!");
+                return;
+            }
+
+            if (masks == null || masks.Length == 0)
+            {
+                MessageBox.Show("Выберите маску!");
+                return;
+            }
+
+            if (files == null || files.Length == 0)
+            {
+                MessageBox.Show("Выберите папку с файлами!");
+                return;
+            }
+
+            if (resultFolderPath == "")
+            {
+                MessageBox.Show("Выберите папку для сохранения результатов");
+                return;
+            }
+
+            if (minsCheckBox.Checked && maxisCheckBox.Checked)
+            {
+                option = "all";
+                
+            }
+            else
+            {
+                option = maxisCheckBox.Checked ? "max" : minsCheckBox.Checked ? "min" : "";
+            }
+            if (option == "")
+            {
+                MessageBox.Show("Выберите тип максмумов");
+                return;
+            }
+            
+            
+            foreach (string mask in masks)
+            {
+                pairs = PairFilesLooker.FindPairs(files, mask);
+                PairLooker.FindPairs(pairs, resultFolderPath, percentage,option);
+            }
+
+            MessageBox.Show("Конец работы!");
+        }
+
+
+        private void percantageNumUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            percentage = (int) percantageNumUpDown.Value;
+        }
+
+        private void saveResultsBtn_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    resultFolderPath = fbd.SelectedPath;
                 }
             }
         }

@@ -5,7 +5,7 @@ namespace Paired_peaks.Utils
 {
     public class PairLooker
     {
-        public static void FindPairs(List<string> pairs, string resultFolder, int percentage,string option)
+        public static void FindPairs(List<string> pairs, string resultFolder, int percentage, string option)
         {
             string data1;
             string data2;
@@ -13,6 +13,8 @@ namespace Paired_peaks.Utils
             List<string> result2 = new List<string>();
             SortedDictionary<int, int> max1 = new SortedDictionary<int, int>();
             SortedDictionary<int, int> max2 = new SortedDictionary<int, int>();
+            SortedDictionary<int, int> min1 = new SortedDictionary<int, int>();
+            SortedDictionary<int, int> min2 = new SortedDictionary<int, int>();
             int missingPeaks1 = 0;
             int missingPeaks2 = 0;
             string resultInfo = "";
@@ -20,10 +22,11 @@ namespace Paired_peaks.Utils
             {
                 for (int i = 0; i < pairs.Count - 1; i++)
                 {
-                    if (pairs[mainFileIndex] ==pairs[i + 1] )
+                    if (pairs[mainFileIndex] == pairs[i + 1])
                     {
-                     continue;   
+                        continue;
                     }
+
                     data1 = ReadWriteFile.ReadDatFile(pairs[mainFileIndex]);
                     data2 = ReadWriteFile.ReadDatFile(pairs[i + 1]);
 
@@ -37,47 +40,88 @@ namespace Paired_peaks.Utils
                             result2 = PairedPeaksLooker.FindPairs(max2, max1, ref missingPeaks2, percentage)
                                 .ConvertAll(x => x.ToString());
                             ReadWriteFile.WriteTxtFile(result1,
-                                resultFolder +"\\" +Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) + "_" +
+                                resultFolder + "\\" + Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) + "_" +
                                 Path.GetFileNameWithoutExtension(pairs[i + 1]) +
                                 "_max.txt");
                             ReadWriteFile.WriteTxtFile(result2,
-                                resultFolder +"\\" + Path.GetFileNameWithoutExtension(pairs[i + 1]) + "_" + Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) +
+                                resultFolder + "\\" + Path.GetFileNameWithoutExtension(pairs[i + 1]) + "_" +
+                                Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) +
                                 "_max.txt");
-                            resultInfo = Path.GetFileName(pairs[mainFileIndex]) + " " + Path.GetFileName(pairs[i + 1]) + " " +
+                            resultInfo = Path.GetFileName(pairs[mainFileIndex]) + " " + Path.GetFileName(pairs[i + 1]) +
+                                         " " +  "max " +
                                          missingPeaks1 + " " + missingPeaks2;
                             ReadWriteFile.WriteTxtFile(resultInfo, resultFolder + "\\result.txt");
                             missingPeaks1 = 0;
                             missingPeaks2 = 0;
                             break;
                         case "min":
-                            max1 = PeakLooker.FindMinPeaks(IntegerConverter.ConvertStringToInteger(data1));
-                            max2 = PeakLooker.FindMinPeaks(IntegerConverter.ConvertStringToInteger(data2));
-                            result1 = PairedPeaksLooker.FindPairs(max1, max2, ref missingPeaks1, percentage)
+                            min1 = PeakLooker.FindMinPeaks(IntegerConverter.ConvertStringToInteger(data1));
+                            min2 = PeakLooker.FindMinPeaks(IntegerConverter.ConvertStringToInteger(data2));
+                            result1 = PairedPeaksLooker.FindPairs(min1, min2, ref missingPeaks1, percentage)
                                 .ConvertAll(x => x.ToString());
-                            result2 = PairedPeaksLooker.FindPairs(max2, max1, ref missingPeaks2, percentage)
+                            result2 = PairedPeaksLooker.FindPairs(min2, min1, ref missingPeaks2, percentage)
                                 .ConvertAll(x => x.ToString());
                             ReadWriteFile.WriteTxtFile(result1,
-                                resultFolder +"\\" +Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) + "_" +
+                                resultFolder + "\\" + Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) + "_" +
                                 Path.GetFileNameWithoutExtension(pairs[i + 1]) +
                                 "_min.txt");
                             ReadWriteFile.WriteTxtFile(result2,
-                                resultFolder +"\\" + Path.GetFileNameWithoutExtension(pairs[i + 1]) + "_" + Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) +
+                                resultFolder + "\\" + Path.GetFileNameWithoutExtension(pairs[i + 1]) + "_" +
+                                Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) +
                                 "_min.txt");
-                            resultInfo = Path.GetFileName(pairs[mainFileIndex]) + " " + Path.GetFileName(pairs[i + 1]) + " " +
+                            resultInfo = Path.GetFileName(pairs[mainFileIndex]) + " " + Path.GetFileName(pairs[i + 1]) +
+                                         " " + "min " +
                                          missingPeaks1 + " " + missingPeaks2;
                             ReadWriteFile.WriteTxtFile(resultInfo, resultFolder + "\\result.txt");
                             missingPeaks1 = 0;
                             missingPeaks2 = 0;
                             break;
-                        
-                        
+
+                        case "all":
+                            max1 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data1));
+                            max2 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data2));
+                            result1 = PairedPeaksLooker.FindPairs(max1, max2, ref missingPeaks1, percentage)
+                                .ConvertAll(x => x.ToString());
+                            result2 = PairedPeaksLooker.FindPairs(max2, max1, ref missingPeaks2, percentage)
+                                .ConvertAll(x => x.ToString());
+                            ReadWriteFile.WriteTxtFile(result1,
+                                resultFolder + "\\" + Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) + "_" +
+                                Path.GetFileNameWithoutExtension(pairs[i + 1]) +
+                                "_max.txt");
+                            ReadWriteFile.WriteTxtFile(result2,
+                                resultFolder + "\\" + Path.GetFileNameWithoutExtension(pairs[i + 1]) + "_" +
+                                Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) +
+                                "_max.txt");
+                            resultInfo = Path.GetFileName(pairs[mainFileIndex]) + " " + Path.GetFileName(pairs[i + 1]) +
+                                         " " +  "max " +
+                                         missingPeaks1 + " " + missingPeaks2;
+                            ReadWriteFile.WriteTxtFile(resultInfo, resultFolder + "\\result.txt");
+                            missingPeaks1 = 0;
+                            missingPeaks2 = 0;
+                            
+                            min1 = PeakLooker.FindMinPeaks(IntegerConverter.ConvertStringToInteger(data1));
+                            min2 = PeakLooker.FindMinPeaks(IntegerConverter.ConvertStringToInteger(data2));
+                            result1 = PairedPeaksLooker.FindPairs(min1, min2, ref missingPeaks1, percentage)
+                                .ConvertAll(x => x.ToString());
+                            result2 = PairedPeaksLooker.FindPairs(min2, min1, ref missingPeaks2, percentage)
+                                .ConvertAll(x => x.ToString());
+                            ReadWriteFile.WriteTxtFile(result1,
+                                resultFolder + "\\" + Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) + "_" +
+                                Path.GetFileNameWithoutExtension(pairs[i + 1]) +
+                                "_min.txt");
+                            ReadWriteFile.WriteTxtFile(result2,
+                                resultFolder + "\\" + Path.GetFileNameWithoutExtension(pairs[i + 1]) + "_" +
+                                Path.GetFileNameWithoutExtension(pairs[mainFileIndex]) +
+                                "_min.txt");
+                            resultInfo = Path.GetFileName(pairs[mainFileIndex]) + " " + Path.GetFileName(pairs[i + 1]) +
+                                         " " + "min " +
+                                         missingPeaks1 + " " + missingPeaks2;
+                            ReadWriteFile.WriteTxtFile(resultInfo, resultFolder + "\\result.txt");
+                            missingPeaks1 = 0;
+                            missingPeaks2 = 0;
+                            
+                            break;
                     }
-                    
-                   
-                    
-                   
-                   
-                  
                 }
             }
         }

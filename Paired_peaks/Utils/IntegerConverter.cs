@@ -17,7 +17,6 @@ namespace Paired_peaks.Utils
             {
                 output.Add(Int32.Parse(r));
             }
-
             return output;
 
         }

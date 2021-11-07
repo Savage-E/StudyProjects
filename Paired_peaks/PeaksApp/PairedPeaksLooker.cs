@@ -33,8 +33,6 @@ namespace Paired_peaks.Utils
                     missingPeaks++;
                     continue;
                 }
-
-
                 KeyValuePair<int, int> value1 = array1.ElementAt(i + 1);
 
                 int rightFile1 = array1.Keys.ElementAt(i) +

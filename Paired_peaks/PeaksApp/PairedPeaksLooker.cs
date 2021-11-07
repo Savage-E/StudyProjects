@@ -8,16 +8,17 @@ namespace Paired_peaks.Utils
 {
     public class PairedPeaksLooker
     {
-        public static List<Int32> FindPairs(SortedDictionary<int, int> array1, SortedDictionary<int, int> array2,
+        public static List<double> FindPairs(SortedDictionary<int, double> array1, SortedDictionary<int, double> array2,
             ref int missingPeaks, int percentage)
         {
-            List<Int32> result = new List<int>();
+            
+            List<double> result = new List<double>();
             int lookupSize = array1.Count > array2.Count ? array2.Count : array1.Count;
             for (int i = 0; i < lookupSize - 1; i++)
             {
                 if (i == 0)
                 {
-                    KeyValuePair<int, int> temp = array1.ElementAt(1);
+                    KeyValuePair<int, double> temp = array1.ElementAt(1);
 
                     int firstRightEdge = array1.Keys.ElementAt(0) +
                                          FindValidInterval(temp.Key, array1.Keys.ElementAt(0), percentage);
@@ -33,7 +34,7 @@ namespace Paired_peaks.Utils
                     missingPeaks++;
                     continue;
                 }
-                KeyValuePair<int, int> value1 = array1.ElementAt(i + 1);
+                KeyValuePair<int, double> value1 = array1.ElementAt(i + 1);
 
                 int rightFile1 = array1.Keys.ElementAt(i) +
                                  FindValidInterval(value1.Key, array1.Keys.ElementAt(i), percentage);

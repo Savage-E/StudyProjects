@@ -6,10 +6,10 @@ namespace Paired_peaks.Utils
 {
     public class PeakLooker
     {
-        public static SortedDictionary<int,int>    FindMaxPeaks(List<Int32> array)
+        public static SortedDictionary<int,double>    FindMaxPeaks(List<double> array)
         {
          
-            SortedDictionary<int,int> map = new SortedDictionary<int, int>();
+            SortedDictionary<int,double> map = new SortedDictionary<int, double>();
            
             for (int i = 0; i < array.Count-1; i++) {
                 if (i== 0)
@@ -45,10 +45,10 @@ namespace Paired_peaks.Utils
             return map;
         }
 
-        public static SortedDictionary<int,int>   FindMinPeaks(List<Int32> array)
+        public static SortedDictionary<int,double>   FindMinPeaks(List<double> array)
         {
             
-            SortedDictionary<int,int> map = new SortedDictionary<int, int>();
+            SortedDictionary<int,double> map = new SortedDictionary<int, double>();
             
             for (int i = 0; i < array.Count-1; i++) {
                 if (i== 0)

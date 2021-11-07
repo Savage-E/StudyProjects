@@ -11,10 +11,10 @@ namespace Paired_peaks.Utils
             string data2;
             List<string> result1 = new List<string>();
             List<string> result2 = new List<string>();
-            SortedDictionary<int, int> max1 = new SortedDictionary<int, int>();
-            SortedDictionary<int, int> max2 = new SortedDictionary<int, int>();
-            SortedDictionary<int, int> min1 = new SortedDictionary<int, int>();
-            SortedDictionary<int, int> min2 = new SortedDictionary<int, int>();
+            SortedDictionary<int, double> max1 = new SortedDictionary<int, double>();
+            SortedDictionary<int, double> max2 = new SortedDictionary<int, double>();
+            SortedDictionary<int, double> min1 = new SortedDictionary<int, double>();
+            SortedDictionary<int, double> min2 = new SortedDictionary<int, double>();
             int missingPeaks1 = 0;
             int missingPeaks2 = 0;
             string resultInfo = "";

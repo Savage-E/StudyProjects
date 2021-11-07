@@ -7,15 +7,15 @@ namespace Paired_peaks.Utils
 {
     public class IntegerConverter
     {
-        public static  List<Int32> ConvertStringToInteger(string source)
+        public static  List<double> ConvertStringToInteger(string source)
         {
             
             string []rows = source.Split(new char[] {'\r','\n'},StringSplitOptions.RemoveEmptyEntries);
-            List<Int32> output = new List<int>();
+            List<double> output = new List<double>();
             
             foreach (string r  in rows)
             {
-                output.Add(Int32.Parse(r));
+                output.Add(double.Parse(r));
             }
             return output;
 

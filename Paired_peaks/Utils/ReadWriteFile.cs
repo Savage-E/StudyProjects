@@ -25,8 +25,8 @@ namespace Paired_peaks.Utils
 
         public static void WriteTxtFile(string data, string fileName)
         {
-            StreamWriter sw =  File.AppendText(fileName);
-            sw.Write(data+"\n");
+            StreamWriter sw = File.AppendText(fileName);
+            sw.Write(data + "\n");
             sw.Close();
         }
     }

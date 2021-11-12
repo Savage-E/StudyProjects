@@ -1,65 +1,128 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace Paired_peaks.Utils
 {
     public class PairedPeaksLooker
     {
         public static List<double> FindPairs(SortedDictionary<int, double> array1, SortedDictionary<int, double> array2,
-            ref int missingPeaks, int percentage)
+            ref int missingPeaks1 , ref int missingPeaks2, int pointsRange)
         {
-            
-            List<double> result = new List<double>();
+            var result = new List<double>();
+            int peak1;
+            int peak2;
+
+            IEnumerable<int> tempArray1;
+            IEnumerable<int> tempArray2;
+            int rightEdgePeak1;
+            int leftEdgePeak1;
+
+
+            int rightEdgePeak2;
+            int leftEdgePeak2;
+
             int lookupSize = array1.Count > array2.Count ? array2.Count : array1.Count;
-            for (int i = 0; i < lookupSize - 1; i++)
+            for (var i = 0; i < lookupSize - 1; i++)
             {
+                peak1 = array1.Keys.ElementAt(i);
+                peak2 = array2.Keys.ElementAt(i);
+
+
                 if (i == 0)
                 {
-                    KeyValuePair<int, double> temp = array1.ElementAt(1);
+                    rightEdgePeak1 = peak1 +
+                                     pointsRange;
+                    leftEdgePeak1 = peak1 -
+                                    pointsRange;
 
-                    int firstRightEdge = array1.Keys.ElementAt(0) +
-                                         FindValidInterval(temp.Key, array1.Keys.ElementAt(0), percentage);
-                    int firstLeftEdge = array1.Keys.ElementAt(0) -
-                                        FindValidInterval(array1.Keys.ElementAt(0), 0, percentage);
 
-                    if (array2.Keys.ElementAt(i) >= firstLeftEdge && array2.Keys.ElementAt(i) <= firstRightEdge)
+                    rightEdgePeak2 = peak2 +
+                                     pointsRange;
+                    leftEdgePeak2 = peak2 -
+                                    pointsRange;
+
+
+                    tempArray1 = array1.Keys.Where(x => leftEdgePeak2 < x && x < rightEdgePeak2);
+                    tempArray2 = array2.Keys.Where(x => leftEdgePeak1 < x && x < rightEdgePeak1);
+
+                    if (!tempArray1.Any())
                     {
-                        result.Add(Math.Abs(array2.Keys.ElementAt(0) - array1.Keys.ElementAt(0)));
+                        array2.Remove(i);
+                        lookupSize = array1.Count > array2.Count ? array2.Count : array1.Count;
+                        missingPeaks2++;
                         continue;
                     }
 
-                    missingPeaks++;
-                    continue;
+                    if (!tempArray2.Any())
+                    {
+                        array1.Remove(i);
+                        lookupSize = array1.Count > array2.Count ? array2.Count : array1.Count;
+                        missingPeaks1++;
+                        continue;
+                    }
+
+                    result.Add(Math.Abs(tempArray1.First() - tempArray2.First()));
                 }
-                KeyValuePair<int, double> value1 = array1.ElementAt(i + 1);
-
-                int rightFile1 = array1.Keys.ElementAt(i) +
-                                 FindValidInterval(value1.Key, array1.Keys.ElementAt(i), percentage);
-                int leftFile1 = array1.Keys.ElementAt(i) -
-                                FindValidInterval(array1.Keys.ElementAt(i), array1.Keys.ElementAt(i - 1), percentage);
-                var tempArray = array2.Keys.Where(x => leftFile1 < x && x < rightFile1);
-
-                if (tempArray.Any())
+                else
                 {
-                    var value = array2.Where(x => x.Key == tempArray.First());
-                    var res = Math.Abs(value.First().Key - array1.Keys.ElementAt(i));
-                    result.Add(res);
-                    continue;
-                }
+                    rightEdgePeak1 = peak1 +
+                                     pointsRange;
+                    leftEdgePeak1 = peak1 -
+                                    pointsRange;
 
-                missingPeaks++;
+
+                    rightEdgePeak2 = peak2 +
+                                     pointsRange;
+                    leftEdgePeak2 = peak2 -
+                                    pointsRange;
+
+
+                    if (peak1 >= leftEdgePeak2 && peak1 <= rightEdgePeak2 && peak2 >= leftEdgePeak1 &&
+                        peak2 <= rightEdgePeak1)
+                    {
+                        var res = peak1 - peak2;
+                        result.Add(res);
+                    }
+                    else if (!(peak1 >= leftEdgePeak2 && peak1 <= rightEdgePeak2))
+                    {
+                        if (peak1 < peak2)
+                        {
+                            array1.Remove(peak1);
+                            i--;
+                            missingPeaks1++;
+                        }
+                        else
+                        {
+                            array2.Remove(peak2);
+                            i--;
+                            missingPeaks2++;
+                        }
+
+                        lookupSize = array1.Count > array2.Count ? array2.Count : array1.Count;
+                    }
+
+                    else if (!(peak2 >= leftEdgePeak1 && peak2 <= rightEdgePeak1))
+                    {
+                        if (peak1 > peak2)
+                        {
+                            array2.Remove(peak2);
+                            i--;
+                            missingPeaks2++;
+                        }
+                        else
+                        {
+                            array1.Remove(peak1);
+                            i--;
+                            missingPeaks1++;
+                        }
+
+                        lookupSize = array1.Count > array2.Count ? array2.Count : array1.Count;
+                    }
+                }
             }
 
             return result;
-        }
-
-        private static int FindValidInterval(int index1, int index2, int percentage)
-        {
-            var val = Math.Abs((index2 - index1) * ((float) percentage / 100));
-            return (int) val;
         }
     }
 }

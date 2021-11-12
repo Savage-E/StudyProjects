@@ -19,7 +19,7 @@ namespace Paired_peaks
         private string data2;
         private static SortedDictionary<int, int> max1;
         private static SortedDictionary<int, int> max2;
-        private int percentage = 0;
+        private int pointsRanage = 0;
         private string[] files;
         private string[] masks;
         private string resultFolderPath;
@@ -29,20 +29,20 @@ namespace Paired_peaks
         {
             InitializeComponent();
 
-            /*var f = 11; //частота синусоидального сигнала
-            var fd = 10000; //частота дискретизации
-            var w = 3 * Math.PI * f / fd;
-            var tempData = new List<int>();
-        
-            for (int i = 0; i < 10000; i++)
-            {
-                var val = (0.7 * Math.Sin(w * i+12)) * 100;
-                
-                tempData.Add((int) Math.Round(val));
-            }
-            ReadWriteFile.WriteTxtFile(tempData.ConvertAll(x => x.ToString()));*/
-
-
+            /*   var f = 16; //частота синусоидального сигнала
+               var fd = 10000; //частота дискретизации
+               var w = 3 * Math.PI * f / fd;
+               var tempData = new List<int>();
+           
+               for (int i = 0; i < 10000; i++)
+               {
+                   var val = (0.7 * Math.Sin(w * i+12)) * 100;
+                   
+                   tempData.Add((int) Math.Round(val));
+               }
+               ReadWriteFile.WriteTxtFile(tempData.ConvertAll(x => x.ToString()),"test.txt");
+   
+   */
             /*data1 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\15.dat");
             data2 = ReadWriteFile.ReadDatFile(@"F:\Projects\StudyProjects\Paired_peaks\bin\Debug\Resources\16.dat");
             max1 = PeakLooker.FindMaxPeaks(IntegerConverter.ConvertStringToInteger(data1));
@@ -67,7 +67,7 @@ namespace Paired_peaks
             string filename = openMaskFileDialog.FileName;
             string fileText = File.ReadAllText(filename);
             masks = fileText.Split(new char[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
-            maskTbx.Text = fileText;
+            maskRichTbx.Text = fileText;
         }
 
         private void openSignalsFolderBtn_Click(object sender, EventArgs e)
@@ -79,6 +79,7 @@ namespace Paired_peaks
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     files = Directory.GetFiles(fbd.SelectedPath);
+                    signalsFolderTbx.Text = fbd.SelectedPath;
                 }
             }
         }
@@ -86,10 +87,10 @@ namespace Paired_peaks
 
         private void findPeaksExecuteBtn_Click(object sender, EventArgs e)
         {
-            List<string> pairs = new List<string>();
-            if (percentage == 0)
+            List<List<string>> pairs = new List<List<string>>();
+            if (pointsRanage == 0)
             {
-                MessageBox.Show("Введите проценты!!!");
+                MessageBox.Show("Введите число отсчетов!!!");
                 return;
             }
 
@@ -114,23 +115,23 @@ namespace Paired_peaks
             if (minsCheckBox.Checked && maxisCheckBox.Checked)
             {
                 option = "all";
-                
             }
             else
             {
                 option = maxisCheckBox.Checked ? "max" : minsCheckBox.Checked ? "min" : "";
             }
+
             if (option == "")
             {
                 MessageBox.Show("Выберите тип максмумов");
                 return;
             }
-            
-            
+
+
             foreach (string mask in masks)
             {
                 pairs = PairFilesLooker.FindPairs(files, mask);
-                PairLooker.FindPairs(pairs, resultFolderPath, percentage,option);
+                PairLooker.FindPairs(pairs, resultFolderPath, pointsRanage, option);
             }
 
             MessageBox.Show("Конец работы!");
@@ -139,7 +140,7 @@ namespace Paired_peaks
 
         private void percantageNumUpDown_ValueChanged(object sender, EventArgs e)
         {
-            percentage = (int) percantageNumUpDown.Value;
+            pointsRanage = (int) percantageNumUpDown.Value;
         }
 
         private void saveResultsBtn_Click(object sender, EventArgs e)
@@ -151,6 +152,7 @@ namespace Paired_peaks
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     resultFolderPath = fbd.SelectedPath;
+                    resultFolderTbx.Text = fbd.SelectedPath;
                 }
             }
         }

@@ -20,6 +20,9 @@ namespace Paired_peaks.Utils
             string resultInfo = "";
             foreach (var pair in pairs)
             {
+              missingPeaks1 = 0;
+                missingPeaks2 = 0;
+
                 for (int i = 0; i < pair.Count - 1; i++)
                 {
                     data1 = ReadWriteFile.ReadDatFile(pair[i]);

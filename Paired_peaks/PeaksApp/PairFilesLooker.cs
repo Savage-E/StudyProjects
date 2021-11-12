@@ -9,29 +9,41 @@ namespace Paired_peaks.Utils
         public static List<List<string>> FindPairs(string[] files, string mask)
         {
             List<List<string>> pairs = new List<List<string>>();
-            string fileName = "";
-            string file1 = "";
-            string file2 = "";
-            string[] masks = mask.Split(' ');
-            int i = 0;
-            List<string> pair = new List<string>(2);
 
+            string[] masks = mask.Split(' ');
+
+     
+            List<string> firstPairs = new List<string>(2);
+            List<string> secondPairs = new List<string>(2);
+
+      
             foreach (string file in files)
             {
-                fileName = System.IO.Path.GetFileName(file);
-                if (checkMask(fileName, masks[i]))
+                string fileName = System.IO.Path.GetFileName(file);
+                if (checkMask(fileName, masks[0]))
                 {
-                    i++;
-                    pair.Add(file);
-                }
-
-                if (i == 2)
-                {
-                    break;
+                    firstPairs.Add(file);
                 }
             }
 
-            pairs.Add(pair);
+
+            foreach (string file in files)
+            {
+                string fileName = System.IO.Path.GetFileName(file);
+                if (checkMask(fileName, masks[1]))
+                {
+                    secondPairs.Add(file);
+                }
+            }
+            
+            for (var i = 0; i < firstPairs.Count; i++)
+            {
+                List<string> pair = new List<string>();
+                pair.Add(firstPairs[i]);
+                pair.Add(secondPairs[i]);
+                pairs.Add(pair);
+            }
+            
             return pairs;
         }
 

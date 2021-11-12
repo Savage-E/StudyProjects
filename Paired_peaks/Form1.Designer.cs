@@ -60,7 +60,7 @@
             // 
             // findPeaksExecuteBtn
             // 
-            this.findPeaksExecuteBtn.Location = new System.Drawing.Point(315, 443);
+            this.findPeaksExecuteBtn.Location = new System.Drawing.Point(315, 442);
             this.findPeaksExecuteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.findPeaksExecuteBtn.Name = "findPeaksExecuteBtn";
             this.findPeaksExecuteBtn.Size = new System.Drawing.Size(117, 42);
@@ -158,7 +158,7 @@
             // 
             // resultFolderTbx
             // 
-            this.resultFolderTbx.Location = new System.Drawing.Point(12, 243);
+            this.resultFolderTbx.Location = new System.Drawing.Point(12, 242);
             this.resultFolderTbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.resultFolderTbx.Name = "resultFolderTbx";
             this.resultFolderTbx.Size = new System.Drawing.Size(209, 27);
@@ -166,7 +166,7 @@
             // 
             // signalsFolderTbx
             // 
-            this.signalsFolderTbx.Location = new System.Drawing.Point(282, 243);
+            this.signalsFolderTbx.Location = new System.Drawing.Point(282, 242);
             this.signalsFolderTbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.signalsFolderTbx.Name = "signalsFolderTbx";
             this.signalsFolderTbx.Size = new System.Drawing.Size(239, 27);
